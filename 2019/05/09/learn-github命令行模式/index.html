@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="命令行更有利于让我们知道究竟发生了什么查看帮助1.git help查看所有git命令2.git help 命令查看某个命令的详细帮助 克隆命令1.git clone ‘https:&#x2F;&#x2F;github.com&#x2F;sfmy&#x2F;learn-github.git&#39;从远程克隆仓库到本地2.git clone ‘https:&#x2F;&#x2F;github.com&#x2F;sfmy&#x2F;learn-github.git&#39; le">
+<meta property="og:type" content="article">
+<meta property="og:title" content="learn-github命令行模式">
+<meta property="og:url" content="http://example.com/2019/05/09/learn-github%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="SFMY&#39;s Blogs">
+<meta property="og:description" content="命令行更有利于让我们知道究竟发生了什么查看帮助1.git help查看所有git命令2.git help 命令查看某个命令的详细帮助 克隆命令1.git clone ‘https:&#x2F;&#x2F;github.com&#x2F;sfmy&#x2F;learn-github.git&#39;从远程克隆仓库到本地2.git clone ‘https:&#x2F;&#x2F;github.com&#x2F;sfmy&#x2F;learn-github.git&#39; le">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-05-09T08:25:33.000Z">
+<meta property="article:modified_time" content="2021-06-15T10:21:34.695Z">
+<meta property="article:author" content="sfmy">
+<meta property="article:tag" content="tools">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>learn-github命令行模式</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇 " href="/2019/07/12/mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9D%83%E9%99%90%E9%97%AE%E9%A2%98/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/2019/03/06/npm%E6%9B%B4%E6%8D%A2%E9%95%9C%E5%83%8F%E6%BA%90/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2019/05/09/learn-github%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2019/05/09/learn-github%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F/&text=learn-github命令行模式"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2019/05/09/learn-github%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F/&title=learn-github命令行模式"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2019/05/09/learn-github%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F/&is_video=false&description=learn-github命令行模式"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=learn-github命令行模式&body=Check out this article: http://example.com/2019/05/09/learn-github%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2019/05/09/learn-github%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F/&title=learn-github命令行模式"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2019/05/09/learn-github%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F/&title=learn-github命令行模式"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2019/05/09/learn-github%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F/&title=learn-github命令行模式"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2019/05/09/learn-github%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F/&title=learn-github命令行模式"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2019/05/09/learn-github%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F/&name=learn-github命令行模式&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2019/05/09/learn-github%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F/&t=learn-github命令行模式"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%9B%B4%E6%9C%89%E5%88%A9%E4%BA%8E%E8%AE%A9%E6%88%91%E4%BB%AC%E7%9F%A5%E9%81%93%E7%A9%B6%E7%AB%9F%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88"><span class="toc-number">1.</span> <span class="toc-text">命令行更有利于让我们知道究竟发生了什么</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%B8%AE%E5%8A%A9"><span class="toc-number"></span> <span class="toc-text">查看帮助</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%8B%E9%9A%86%E5%91%BD%E4%BB%A4"><span class="toc-number"></span> <span class="toc-text">克隆命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8B%89%E5%8F%96%E6%9C%80%E6%96%B0%E4%BB%A3%E7%A0%81"><span class="toc-number"></span> <span class="toc-text">拉取最新代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%8A%B6%E6%80%81"><span class="toc-number"></span> <span class="toc-text">查看状态</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E4%BB%A3%E7%A0%81"><span class="toc-number"></span> <span class="toc-text">提交代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A8%E5%88%B0%E8%BF%9C%E7%A8%8B"><span class="toc-number"></span> <span class="toc-text">推到远程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%8F%98%E5%8A%A8"><span class="toc-number"></span> <span class="toc-text">查看变动</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95"><span class="toc-number"></span> <span class="toc-text">查看历史记录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%87%E6%8D%A2%E5%88%86%E6%94%AF"><span class="toc-number"></span> <span class="toc-text">切换分支</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%88%E5%B9%B6%E5%88%86%E6%94%AF"><span class="toc-number"></span> <span class="toc-text">合并分支</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#git%E5%A5%BD%E7%94%A8%E7%9A%84%E5%9C%B0%E6%96%B9%E5%9C%A8%E5%93%AA%E9%87%8C"><span class="toc-number">1.</span> <span class="toc-text">git好用的地方在哪里</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E5%85%B6%E5%AE%83%E4%B8%8D%E5%B8%B8%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">一些其它不常用的命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BF%9B%E8%A1%8C%E6%9F%90%E4%BA%9B%E5%8C%B9%E9%85%8D"><span class="toc-number"></span> <span class="toc-text">可以使用正则表达式进行某些匹配</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E6%9F%90%E6%AC%A1log%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-number"></span> <span class="toc-text">显示某次log的内容</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9A%82%E5%AD%98%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4%E7%9A%84%E6%94%B9%E5%8A%A8"><span class="toc-number"></span> <span class="toc-text">暂存工作空间的改动</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9E%E9%80%80%E8%87%AA%E5%B7%B1%E7%9A%84%E4%BF%AE%E6%94%B9"><span class="toc-number"></span> <span class="toc-text">回退自己的修改</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%9C%AC%E5%9C%B0%E7%9A%84%E6%8F%90%E4%BA%A4%E6%B3%A8%E9%87%8A"><span class="toc-number"></span> <span class="toc-text">修改本地的提交注释</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9B%B4%E6%8D%A2%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E4%B8%8E%E7%94%A8%E6%88%B7%E5%90%8D"><span class="toc-number"></span> <span class="toc-text">更换电子邮件与用户名</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#git%E4%B8%AD%E6%96%87%E6%96%87%E4%BB%B6%E4%B9%B1%E7%A0%81"><span class="toc-number"></span> <span class="toc-text">git中文文件乱码</span></a>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        learn-github命令行模式
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">sfmy</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-05-09T08:25:33.000Z" itemprop="datePublished">2019-05-09</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/tools/" rel="tag">tools</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="命令行更有利于让我们知道究竟发生了什么"><a href="#命令行更有利于让我们知道究竟发生了什么" class="headerlink" title="命令行更有利于让我们知道究竟发生了什么"></a>命令行更有利于让我们知道究竟发生了什么</h2><h1 id="查看帮助"><a href="#查看帮助" class="headerlink" title="查看帮助"></a>查看帮助</h1><p>1.git help<br>查看所有git命令<br>2.git help 命令<br>查看某个命令的详细帮助</p>
+<h1 id="克隆命令"><a href="#克隆命令" class="headerlink" title="克隆命令"></a>克隆命令</h1><p>1.git clone ‘<a target="_blank" rel="noopener" href="https://github.com/sfmy/learn-github.git&#39;">https://github.com/sfmy/learn-github.git&#39;</a><br>从远程克隆仓库到本地<br>2.git clone ‘<a target="_blank" rel="noopener" href="https://github.com/sfmy/learn-github.git&#39;">https://github.com/sfmy/learn-github.git&#39;</a> learn<br>从远程克隆仓库到本地，并修改仓库名为learn</p>
+<h1 id="拉取最新代码"><a href="#拉取最新代码" class="headerlink" title="拉取最新代码"></a>拉取最新代码</h1><p>1.git pull<br>从远端拉取最新代码</p>
+<h1 id="查看状态"><a href="#查看状态" class="headerlink" title="查看状态"></a>查看状态</h1><p>1.git status<br>查看当前工作状态<br>1.git status – ‘目录’<br>查看此目录的工作状态</p>
+<h1 id="提交代码"><a href="#提交代码" class="headerlink" title="提交代码"></a>提交代码</h1><p>1.git add .<br>提交当前工作空间的修改到缓存<br>2.git add – ‘目录’<br>提交目录的修改到缓存<br>3.git commit -m ‘注释’<br>提交缓存到本地(只有push才会推到远端)</p>
+<h1 id="推到远程"><a href="#推到远程" class="headerlink" title="推到远程"></a>推到远程</h1><p>1.git push<br>推送本地commit的内容到到远程</p>
+<h1 id="查看变动"><a href="#查看变动" class="headerlink" title="查看变动"></a>查看变动</h1><p>1.git diff<br>查看工作空间的文件变动内容<br>2.git diff –cached<br>查看提交到缓存的变动内容<br>3.git diff HEAD<br>查看工作空间的文件变动内容<br>4.git diff – ‘路径’<br>查看路径内的变动</p>
+<h1 id="查看历史记录"><a href="#查看历史记录" class="headerlink" title="查看历史记录"></a>查看历史记录</h1><p>1.git log<br>历史记录<br>2.git log -p<br>历史记录详细变动<br>3.git log –author=sfmy<br>提交者为sfmy的记录<br>4.git log -3<br>查看3次提交记录<br>5.git log –stat<br>查看记录的变动文件<br>6.git log – ‘路径’<br>查看路径内的记录<br>7.git log –since yesterday<br>查看从昨天开始的记录</p>
+<h1 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h1><p>1.git checkout -b ‘分支名字’<br>从当前分支clone一个分支出去<br>2.git branch<br>查看当前分支<br>3.git branch -a<br>查看本地所有分支<br>4.git branch -r<br>查看远端分支</p>
+<h1 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h1><p>1.git merge ‘分支名字’<br>合并分支到当前分支</p>
+<h2 id="git好用的地方在哪里"><a href="#git好用的地方在哪里" class="headerlink" title="git好用的地方在哪里"></a>git好用的地方在哪里</h2><p>工作中，经常会有这种情况，正在开发一个功能，这个功能可能需要一周才能完成，你可以切出来一个功能分支，每完成一个小功能，提交一次，随时都可以查看自己的历史改动与工作空间的改动。并且在有其他bug时，还可以再切换到主分支上修改bug。但是使用svn的话，整个功能不完成的话，代码是不能提交的，这样当你第三天想看下今天都改动了什么，就只能查看第一天到第三天的改动。并且当有其他bug出现，而且这个需要改动你正在开发的功能已经改动的文件，此时你修改bug提交文件就会涉及前三天写的改动，但是你只是想提交修改bug的改动，而这个改动是会跟功能在同一个文件中。这就不好解决了。</p>
+<h2 id="一些其它不常用的命令"><a href="#一些其它不常用的命令" class="headerlink" title="一些其它不常用的命令"></a>一些其它不常用的命令</h2><h1 id="可以使用正则表达式进行某些匹配"><a href="#可以使用正则表达式进行某些匹配" class="headerlink" title="可以使用正则表达式进行某些匹配"></a>可以使用正则表达式进行某些匹配</h1><p>1.git log -3 -p – ‘<em>.js’<br>查看js文件最近3次的详细改动<br>2.git add – ‘</em>.js’<br>只提交js文件到缓存<br>3.git commit – ‘*.js’ -m ‘xxx’<br>提交js文件</p>
+<h1 id="显示某次log的内容"><a href="#显示某次log的内容" class="headerlink" title="显示某次log的内容"></a>显示某次log的内容</h1><p>1.git show ‘log的index’</p>
+<h1 id="暂存工作空间的改动"><a href="#暂存工作空间的改动" class="headerlink" title="暂存工作空间的改动"></a>暂存工作空间的改动</h1><p>当你正在开发功能分支时，需要切到其他分支修改bug，此时小功能还完成，不想提交，可以暂时把此分支未提交的改动存储起来。等待在其他分支修改完bug后再从stash中弹出来。<br>1.git stash<br>必须先’git add .’保存到缓存中，才能再git stash<br>2.git stash save -m ‘注释’<br>使用注释的话更方便提醒自己，缓存内容，防止出错<br>3.git stash pop<br>会使用最近的缓存内容，从stash中删除<br>4.git stash apply stash@{index}<br>使用缓存<br>5.git stash drop stash@{index}<br>删除缓存</p>
+<h1 id="回退自己的修改"><a href="#回退自己的修改" class="headerlink" title="回退自己的修改"></a>回退自己的修改</h1><p>1.git reset –soft HEAD^<br>会把上次的提交重新回退到本地的缓存中,^个数为回退的次数</p>
+<h1 id="修改本地的提交注释"><a href="#修改本地的提交注释" class="headerlink" title="修改本地的提交注释"></a>修改本地的提交注释</h1><p>1.git rebase -i HEAD~n<br>修改最近n次提交的注释</p>
+<h1 id="更换电子邮件与用户名"><a href="#更换电子邮件与用户名" class="headerlink" title="更换电子邮件与用户名"></a>更换电子邮件与用户名</h1><p>1.只在本项目修改名字与邮件<br>git config –local user.name ‘your name’<br>git config –local user.email ‘your email’<br>2.全局修改名字与邮件<br>git config –global user.name ‘your name’<br>git config –global user.email ‘your email’</p>
+<h1 id="git中文文件乱码"><a href="#git中文文件乱码" class="headerlink" title="git中文文件乱码"></a>git中文文件乱码</h1><p>git config –global core.quotepath false</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%9B%B4%E6%9C%89%E5%88%A9%E4%BA%8E%E8%AE%A9%E6%88%91%E4%BB%AC%E7%9F%A5%E9%81%93%E7%A9%B6%E7%AB%9F%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88"><span class="toc-number">1.</span> <span class="toc-text">命令行更有利于让我们知道究竟发生了什么</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%B8%AE%E5%8A%A9"><span class="toc-number"></span> <span class="toc-text">查看帮助</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%8B%E9%9A%86%E5%91%BD%E4%BB%A4"><span class="toc-number"></span> <span class="toc-text">克隆命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8B%89%E5%8F%96%E6%9C%80%E6%96%B0%E4%BB%A3%E7%A0%81"><span class="toc-number"></span> <span class="toc-text">拉取最新代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%8A%B6%E6%80%81"><span class="toc-number"></span> <span class="toc-text">查看状态</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E4%BB%A3%E7%A0%81"><span class="toc-number"></span> <span class="toc-text">提交代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A8%E5%88%B0%E8%BF%9C%E7%A8%8B"><span class="toc-number"></span> <span class="toc-text">推到远程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%8F%98%E5%8A%A8"><span class="toc-number"></span> <span class="toc-text">查看变动</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95"><span class="toc-number"></span> <span class="toc-text">查看历史记录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%87%E6%8D%A2%E5%88%86%E6%94%AF"><span class="toc-number"></span> <span class="toc-text">切换分支</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%88%E5%B9%B6%E5%88%86%E6%94%AF"><span class="toc-number"></span> <span class="toc-text">合并分支</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#git%E5%A5%BD%E7%94%A8%E7%9A%84%E5%9C%B0%E6%96%B9%E5%9C%A8%E5%93%AA%E9%87%8C"><span class="toc-number">1.</span> <span class="toc-text">git好用的地方在哪里</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E5%85%B6%E5%AE%83%E4%B8%8D%E5%B8%B8%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">一些其它不常用的命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BF%9B%E8%A1%8C%E6%9F%90%E4%BA%9B%E5%8C%B9%E9%85%8D"><span class="toc-number"></span> <span class="toc-text">可以使用正则表达式进行某些匹配</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E6%9F%90%E6%AC%A1log%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-number"></span> <span class="toc-text">显示某次log的内容</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9A%82%E5%AD%98%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4%E7%9A%84%E6%94%B9%E5%8A%A8"><span class="toc-number"></span> <span class="toc-text">暂存工作空间的改动</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9E%E9%80%80%E8%87%AA%E5%B7%B1%E7%9A%84%E4%BF%AE%E6%94%B9"><span class="toc-number"></span> <span class="toc-text">回退自己的修改</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%9C%AC%E5%9C%B0%E7%9A%84%E6%8F%90%E4%BA%A4%E6%B3%A8%E9%87%8A"><span class="toc-number"></span> <span class="toc-text">修改本地的提交注释</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9B%B4%E6%8D%A2%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E4%B8%8E%E7%94%A8%E6%88%B7%E5%90%8D"><span class="toc-number"></span> <span class="toc-text">更换电子邮件与用户名</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#git%E4%B8%AD%E6%96%87%E6%96%87%E4%BB%B6%E4%B9%B1%E7%A0%81"><span class="toc-number"></span> <span class="toc-text">git中文文件乱码</span></a>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2019/05/09/learn-github%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2019/05/09/learn-github%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F/&text=learn-github命令行模式"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2019/05/09/learn-github%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F/&title=learn-github命令行模式"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2019/05/09/learn-github%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F/&is_video=false&description=learn-github命令行模式"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=learn-github命令行模式&body=Check out this article: http://example.com/2019/05/09/learn-github%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2019/05/09/learn-github%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F/&title=learn-github命令行模式"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2019/05/09/learn-github%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F/&title=learn-github命令行模式"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2019/05/09/learn-github%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F/&title=learn-github命令行模式"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2019/05/09/learn-github%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F/&title=learn-github命令行模式"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2019/05/09/learn-github%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F/&name=learn-github命令行模式&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2019/05/09/learn-github%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F/&t=learn-github命令行模式"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2021
+    sfmy
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

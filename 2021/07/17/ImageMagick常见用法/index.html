@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="自己经常需要做一些简单的图片处理工作，而photoshop比较专业，且收费，在macosx上面安装的话也很麻烦。所以就选择了Imagemagick进行一些常用的图片处理。  原图片如下:大小:261x192 1.调整图片的大小123convert images.jpeg -resize 50% images1.jpegconvert images.jpge -resize 130x96 image">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ImageMagick常见用法">
+<meta property="og:url" content="http://example.com/2021/07/17/ImageMagick%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/index.html">
+<meta property="og:site_name" content="SFMY&#39;s Blogs">
+<meta property="og:description" content="自己经常需要做一些简单的图片处理工作，而photoshop比较专业，且收费，在macosx上面安装的话也很麻烦。所以就选择了Imagemagick进行一些常用的图片处理。  原图片如下:大小:261x192 1.调整图片的大小123convert images.jpeg -resize 50% images1.jpegconvert images.jpge -resize 130x96 image">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/magick/images.jpeg">
+<meta property="og:image" content="http://example.com/images/magick/images1.jpeg">
+<meta property="og:image" content="http://example.com/images/magick/images2.jpeg">
+<meta property="og:image" content="http://example.com/images/magick/images3.jpeg">
+<meta property="og:image" content="http://example.com/images/magick/images4.jpeg">
+<meta property="og:image" content="http://example.com/images/magick/images5.jpeg">
+<meta property="og:image" content="http://example.com/images/magick/images6.jpeg">
+<meta property="og:image" content="http://example.com/images/magick/images7.jpeg">
+<meta property="og:image" content="http://example.com/images/magick/images8.jpeg">
+<meta property="og:image" content="http://example.com/images/magick/images9.jpeg">
+<meta property="og:image" content="http://example.com/images/magick/images10.jpeg">
+<meta property="og:image" content="http://example.com/images/magick/images11.jpeg">
+<meta property="og:image" content="http://example.com/images/magick/images12.jpeg">
+<meta property="og:image" content="http://example.com/images/magick/images13.jpeg">
+<meta property="og:image" content="http://example.com/images/magick/images14.jpeg">
+<meta property="og:image" content="http://example.com/images/magick/images15.jpeg">
+<meta property="og:image" content="http://example.com/images/magick/images16.jpeg">
+<meta property="og:image" content="http://example.com/images/magick/images17.jpeg">
+<meta property="og:image" content="http://example.com/images/magick/images18.png">
+<meta property="og:image" content="http://example.com/images/magick/circle.png">
+<meta property="og:image" content="http://example.com/images/magick/images20.png">
+<meta property="og:image" content="http://example.com/images/magick/images21.png">
+<meta property="article:published_time" content="2021-07-17T02:38:07.000Z">
+<meta property="article:modified_time" content="2021-07-17T04:09:48.367Z">
+<meta property="article:author" content="sfmy">
+<meta property="article:tag" content="shell">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/magick/images.jpeg">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>ImageMagick常见用法</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/2021/06/03/%E5%A4%84%E5%9C%A8%E5%86%85%E5%8D%B7%E4%B8%AD%E7%9A%84%E5%9B%BD%E4%BA%BA/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/07/17/ImageMagick%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/07/17/ImageMagick%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/&text=ImageMagick常见用法"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/07/17/ImageMagick%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/&title=ImageMagick常见用法"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/07/17/ImageMagick%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/&is_video=false&description=ImageMagick常见用法"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ImageMagick常见用法&body=Check out this article: http://example.com/2021/07/17/ImageMagick%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/07/17/ImageMagick%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/&title=ImageMagick常见用法"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/07/17/ImageMagick%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/&title=ImageMagick常见用法"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/07/17/ImageMagick%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/&title=ImageMagick常见用法"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/07/17/ImageMagick%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/&title=ImageMagick常见用法"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/07/17/ImageMagick%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/&name=ImageMagick常见用法&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/07/17/ImageMagick%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/&t=ImageMagick常见用法"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-%E8%B0%83%E6%95%B4%E5%9B%BE%E7%89%87%E7%9A%84%E5%A4%A7%E5%B0%8F"><span class="toc-number">1.</span> <span class="toc-text">1.调整图片的大小</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-%E7%82%AD%E7%AC%94%E6%95%88%E6%9E%9C"><span class="toc-number">2.</span> <span class="toc-text">2.炭笔效果</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-%E6%B2%B9%E7%94%BB%E6%95%88%E6%9E%9C"><span class="toc-number">3.</span> <span class="toc-text">3.油画效果</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#4-%E5%89%AA%E5%88%87"><span class="toc-number">4.</span> <span class="toc-text">4.剪切</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#5-%E6%8B%BC%E6%8E%A5"><span class="toc-number">5.</span> <span class="toc-text">5.拼接</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#6-%E8%BE%B9%E6%A1%86"><span class="toc-number">6.</span> <span class="toc-text">6.边框</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#7-%E5%8D%95%E8%89%B2"><span class="toc-number">7.</span> <span class="toc-text">7.单色</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#8-%E6%97%8B%E8%BD%AC"><span class="toc-number">8.</span> <span class="toc-text">8.旋转</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#8-%E7%BF%BB%E8%BD%AC"><span class="toc-number">9.</span> <span class="toc-text">8.翻转</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#9-%E6%95%A3%E5%B0%84"><span class="toc-number">10.</span> <span class="toc-text">9.散射</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#10-%E6%BC%A9%E6%B6%A1"><span class="toc-number">11.</span> <span class="toc-text">10.漩涡</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#11-%E5%87%B9%E5%87%B8"><span class="toc-number">12.</span> <span class="toc-text">11.凹凸</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#12-%E5%89%AA%E5%88%87%E5%9C%86%E5%BD%A2"><span class="toc-number">13.</span> <span class="toc-text">12.剪切圆形</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#13-%E5%8F%A0%E5%8A%A0"><span class="toc-number">14.</span> <span class="toc-text">13.叠加</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        ImageMagick常见用法
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">sfmy</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-07-17T02:38:07.000Z" itemprop="datePublished">2021-07-17</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/shell/" rel="tag">shell</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>自己经常需要做一些简单的图片处理工作，而photoshop比较专业，且收费，在macosx上面<br>安装的话也很麻烦。所以就选择了Imagemagick进行一些常用的图片处理。 </p>
+<p>原图片如下:<br><img src="/images/magick/images.jpeg" alt="原图"><br>大小:261x192</p>
+<h6 id="1-调整图片的大小"><a href="#1-调整图片的大小" class="headerlink" title="1.调整图片的大小"></a>1.调整图片的大小</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">convert images.jpeg -resize 50% images1.jpeg</span><br><span class="line">convert images.jpge -resize 130x96 images2.jpeg</span><br><span class="line">convert images.jpge -resize 100x96 images3.jpeg</span><br></pre></td></tr></table></figure>
+<p>调整大小后图片为:<br><img src="/images/magick/images1.jpeg" alt="调整大小"><br><img src="/images/magick/images2.jpeg" alt="调整大小"><br><img src="/images/magick/images3.jpeg" alt="调整大小"></p>
+<h6 id="2-炭笔效果"><a href="#2-炭笔效果" class="headerlink" title="2.炭笔效果"></a>2.炭笔效果</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert images.jpeg -charcoal 2 images4.jpeg</span><br></pre></td></tr></table></figure>
+<p><img src="/images/magick/images4.jpeg" alt="炭笔"></p>
+<h6 id="3-油画效果"><a href="#3-油画效果" class="headerlink" title="3.油画效果"></a>3.油画效果</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert images.jpeg -paint 3 images5.jpeg</span><br></pre></td></tr></table></figure>
+<p><img src="/images/magick/images5.jpeg" alt="油画"></p>
+<h6 id="4-剪切"><a href="#4-剪切" class="headerlink" title="4.剪切"></a>4.剪切</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert images.jpeg -crop 130x96+0+0 images6.jpeg</span><br></pre></td></tr></table></figure>
+<p><img src="/images/magick/images6.jpeg" alt="剪切"></p>
+<h6 id="5-拼接"><a href="#5-拼接" class="headerlink" title="5.拼接"></a>5.拼接</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">convert -append images.jpeg images.jpeg images7.jpeg</span><br><span class="line">convert +append images.jpeg images.jpeg images8.jpeg</span><br></pre></td></tr></table></figure>
+<p><img src="/images/magick/images7.jpeg" alt="拼接"><br><img src="/images/magick/images8.jpeg" alt="拼接"></p>
+<h6 id="6-边框"><a href="#6-边框" class="headerlink" title="6.边框"></a>6.边框</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert images.jpeg -mattecolor &#x27;#000000&#x27; -frame 20x30 images9.jpeg</span><br></pre></td></tr></table></figure>
+<p><img src="/images/magick/images9.jpeg" alt="边框"></p>
+<h6 id="7-单色"><a href="#7-单色" class="headerlink" title="7.单色"></a>7.单色</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert images.jpeg -monochrome images10.jpeg</span><br></pre></td></tr></table></figure>
+<p><img src="/images/magick/images10.jpeg" alt="单色"></p>
+<h6 id="8-旋转"><a href="#8-旋转" class="headerlink" title="8.旋转"></a>8.旋转</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert images.jpeg -rotate 10 images11.jpeg</span><br></pre></td></tr></table></figure>
+<p><img src="/images/magick/images11.jpeg" alt="旋转"></p>
+<h6 id="8-翻转"><a href="#8-翻转" class="headerlink" title="8.翻转"></a>8.翻转</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">convert images.jpeg -flip images12.jpeg</span><br><span class="line">convert images.jpeg -flop images13.jpeg</span><br></pre></td></tr></table></figure>
+<p><img src="/images/magick/images12.jpeg" alt="翻转"><br><img src="/images/magick/images13.jpeg" alt="翻转"></p>
+<h6 id="9-散射"><a href="#9-散射" class="headerlink" title="9.散射"></a>9.散射</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert images.jpeg -spread 3 images14.jpeg</span><br></pre></td></tr></table></figure>
+<p><img src="/images/magick/images14.jpeg" alt="散射"></p>
+<h6 id="10-漩涡"><a href="#10-漩涡" class="headerlink" title="10.漩涡"></a>10.漩涡</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert images.jpeg -swirl 170 images15.jpeg</span><br></pre></td></tr></table></figure>
+<p><img src="/images/magick/images15.jpeg" alt="漩涡"></p>
+<h6 id="11-凹凸"><a href="#11-凹凸" class="headerlink" title="11.凹凸"></a>11.凹凸</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">convert images.jpeg -raise 10x10 images16.jpeg</span><br><span class="line">convert images.jpeg +raise 10x10 images17.jpeg</span><br></pre></td></tr></table></figure>
+<p><img src="/images/magick/images16.jpeg" alt="凹凸"><br><img src="/images/magick/images17.jpeg" alt="凹凸"></p>
+<h6 id="12-剪切圆形"><a href="#12-剪切圆形" class="headerlink" title="12.剪切圆形"></a>12.剪切圆形</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">convert images.jpeg images.png</span><br><span class="line">convert -size 261x192 xc:none -fill images.png -draw &quot;circle 130,95 130,190&quot; images18.png</span><br></pre></td></tr></table></figure>
+<p><img src="/images/magick/images18.png" alt="圆形"></p>
+<h6 id="13-叠加"><a href="#13-叠加" class="headerlink" title="13.叠加"></a>13.叠加</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert -size 100x100 xc:none -fill white -draw &quot;circle 50,50 50,100&quot; circle.png</span><br></pre></td></tr></table></figure>
+<p><img src="/images/magick/circle.png" alt="叠加"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert images.png circle.png -geometry +20+20 -composite images20.png</span><br></pre></td></tr></table></figure>
+<p><img src="/images/magick/images20.png" alt="叠加"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composite images.png -compose srcin circle.png images21.png</span><br></pre></td></tr></table></figure>
+<p><img src="/images/magick/images21.png" alt="叠加"><br>叠加模式:<br>Atop,Blend,Blur,Bumpmap,<br>ChangeMask,Clear,ColorBurn,ColorDodge,<br>Colorize,CopyAlpha,CopyBlack,CopyBlue,<br>CopyCyan,CopyGreen,Copy,CopyMagenta,<br>CopyRed,CopyYellow,Darken,DarkenIntensity,<br>DivideDst,DivideSrc,Dst,Difference,<br>Displace,Dissolve,Distort,DstAtop,<br>DstIn,DstOut,DstOver,Exclusion,<br>HardLight,HardMix,Hue,In,<br>Intensity,Lighten,LightenIntensity,LinearBurn,<br>LinearDodge,LinearLight,Luminize,Mathematics,<br>MinusDst,MinusSrc,Modulate,ModulusAdd,<br>ModulusSubtract,Multiply,None,Out,<br>Overlay,Over,PegtopLight,PinLight,<br>Plus,Replace,Saturate,Screen,<br>SoftLight,Src,SrcAtop,SrcIn,<br>SrcOut,SrcOver,VividLight,Xor</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-%E8%B0%83%E6%95%B4%E5%9B%BE%E7%89%87%E7%9A%84%E5%A4%A7%E5%B0%8F"><span class="toc-number">1.</span> <span class="toc-text">1.调整图片的大小</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-%E7%82%AD%E7%AC%94%E6%95%88%E6%9E%9C"><span class="toc-number">2.</span> <span class="toc-text">2.炭笔效果</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-%E6%B2%B9%E7%94%BB%E6%95%88%E6%9E%9C"><span class="toc-number">3.</span> <span class="toc-text">3.油画效果</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#4-%E5%89%AA%E5%88%87"><span class="toc-number">4.</span> <span class="toc-text">4.剪切</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#5-%E6%8B%BC%E6%8E%A5"><span class="toc-number">5.</span> <span class="toc-text">5.拼接</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#6-%E8%BE%B9%E6%A1%86"><span class="toc-number">6.</span> <span class="toc-text">6.边框</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#7-%E5%8D%95%E8%89%B2"><span class="toc-number">7.</span> <span class="toc-text">7.单色</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#8-%E6%97%8B%E8%BD%AC"><span class="toc-number">8.</span> <span class="toc-text">8.旋转</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#8-%E7%BF%BB%E8%BD%AC"><span class="toc-number">9.</span> <span class="toc-text">8.翻转</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#9-%E6%95%A3%E5%B0%84"><span class="toc-number">10.</span> <span class="toc-text">9.散射</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#10-%E6%BC%A9%E6%B6%A1"><span class="toc-number">11.</span> <span class="toc-text">10.漩涡</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#11-%E5%87%B9%E5%87%B8"><span class="toc-number">12.</span> <span class="toc-text">11.凹凸</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#12-%E5%89%AA%E5%88%87%E5%9C%86%E5%BD%A2"><span class="toc-number">13.</span> <span class="toc-text">12.剪切圆形</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#13-%E5%8F%A0%E5%8A%A0"><span class="toc-number">14.</span> <span class="toc-text">13.叠加</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/07/17/ImageMagick%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/07/17/ImageMagick%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/&text=ImageMagick常见用法"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/07/17/ImageMagick%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/&title=ImageMagick常见用法"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/07/17/ImageMagick%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/&is_video=false&description=ImageMagick常见用法"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ImageMagick常见用法&body=Check out this article: http://example.com/2021/07/17/ImageMagick%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/07/17/ImageMagick%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/&title=ImageMagick常见用法"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/07/17/ImageMagick%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/&title=ImageMagick常见用法"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/07/17/ImageMagick%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/&title=ImageMagick常见用法"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/07/17/ImageMagick%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/&title=ImageMagick常见用法"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/07/17/ImageMagick%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/&name=ImageMagick常见用法&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/07/17/ImageMagick%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/&t=ImageMagick常见用法"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2021
+    sfmy
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

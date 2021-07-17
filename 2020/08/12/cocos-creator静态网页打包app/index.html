@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="项目地址 借助cordova打包静态网页(mac环境) 下载安装nodejs与npmbrew install nodejs 安装nodejsnpm速度比较慢的话可以更换淘宝镜像或者安装cnpmnpm install -g cnpm  安装cordovacnpm install -g cordova  cordova创建测试项目cordova create demo com.test.demo De">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cocos-creator静态网页打包app">
+<meta property="og:url" content="http://example.com/2020/08/12/cocos-creator%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5%E6%89%93%E5%8C%85app/index.html">
+<meta property="og:site_name" content="SFMY&#39;s Blogs">
+<meta property="og:description" content="项目地址 借助cordova打包静态网页(mac环境) 下载安装nodejs与npmbrew install nodejs 安装nodejsnpm速度比较慢的话可以更换淘宝镜像或者安装cnpmnpm install -g cnpm  安装cordovacnpm install -g cordova  cordova创建测试项目cordova create demo com.test.demo De">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/cordova/cordova2.png">
+<meta property="og:image" content="http://example.com/images/cordova/cordova3.png">
+<meta property="og:image" content="http://example.com/images/cordova/cordova4.png">
+<meta property="og:image" content="http://example.com/images/cordova/cordova5.png">
+<meta property="og:image" content="http://example.com/images/cordova/cordova6.png">
+<meta property="og:image" content="http://example.com/images/cordova/cordova7.png">
+<meta property="og:image" content="http://example.com/images/cordova/cordova9.png">
+<meta property="og:image" content="http://example.com/images/cordova/cordova10.png">
+<meta property="og:image" content="http://example.com/images/cordova/cordova11.png">
+<meta property="og:image" content="http://example.com/images/cordova/cordova12.png">
+<meta property="og:image" content="http://example.com/images/cordova/cordova13.png">
+<meta property="og:image" content="http://example.com/images/cordova/cordova14.png">
+<meta property="og:image" content="http://example.com/images/cordova/cordova15.png">
+<meta property="og:image" content="http://example.com/images/cordova/cordova16.png">
+<meta property="article:published_time" content="2020-08-12T02:02:49.000Z">
+<meta property="article:modified_time" content="2021-06-15T10:21:34.695Z">
+<meta property="article:author" content="sfmy">
+<meta property="article:tag" content="cocos-creator">
+<meta property="article:tag" content="cordova">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/cordova/cordova2.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>cocos-creator静态网页打包app</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇 " href="/2020/08/12/%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5%E6%89%93%E5%8C%85app%E4%B8%ADhtml%E8%B0%83%E7%94%A8android%E5%8E%9F%E7%94%9F%E6%96%B9%E6%B3%95/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/2020/06/19/mac%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AEgtk%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2020/08/12/cocos-creator%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5%E6%89%93%E5%8C%85app/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2020/08/12/cocos-creator%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5%E6%89%93%E5%8C%85app/&text=cocos-creator静态网页打包app"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2020/08/12/cocos-creator%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5%E6%89%93%E5%8C%85app/&title=cocos-creator静态网页打包app"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2020/08/12/cocos-creator%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5%E6%89%93%E5%8C%85app/&is_video=false&description=cocos-creator静态网页打包app"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=cocos-creator静态网页打包app&body=Check out this article: http://example.com/2020/08/12/cocos-creator%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5%E6%89%93%E5%8C%85app/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2020/08/12/cocos-creator%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5%E6%89%93%E5%8C%85app/&title=cocos-creator静态网页打包app"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2020/08/12/cocos-creator%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5%E6%89%93%E5%8C%85app/&title=cocos-creator静态网页打包app"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2020/08/12/cocos-creator%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5%E6%89%93%E5%8C%85app/&title=cocos-creator静态网页打包app"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2020/08/12/cocos-creator%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5%E6%89%93%E5%8C%85app/&title=cocos-creator静态网页打包app"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2020/08/12/cocos-creator%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5%E6%89%93%E5%8C%85app/&name=cocos-creator静态网页打包app&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2020/08/12/cocos-creator%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5%E6%89%93%E5%8C%85app/&t=cocos-creator静态网页打包app"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%80%9F%E5%8A%A9cordova%E6%89%93%E5%8C%85%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5-mac%E7%8E%AF%E5%A2%83"><span class="toc-number">1.</span> <span class="toc-text">借助cordova打包静态网页(mac环境)</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        cocos-creator静态网页打包app
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">sfmy</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-08-12T02:02:49.000Z" itemprop="datePublished">2020-08-12</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/cocos-creator/" rel="tag">cocos-creator</a>, <a class="tag-link-link" href="/tags/cordova/" rel="tag">cordova</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p><a target="_blank" rel="noopener" href="https://github.com/sfmy/CocosCreatorH5ToAndroid">项目地址</a></p>
+<h1 id="借助cordova打包静态网页-mac环境"><a href="#借助cordova打包静态网页-mac环境" class="headerlink" title="借助cordova打包静态网页(mac环境)"></a>借助cordova打包静态网页(mac环境)</h1><ol>
+<li>下载安装nodejs与npm<br>brew install nodejs 安装nodejs<br>npm速度比较慢的话可以更换淘宝镜像或者安装cnpm<br>npm install -g cnpm </li>
+<li>安装cordova<br>cnpm install -g cordova </li>
+<li>cordova创建测试项目<br>cordova create demo com.test.demo Demo<br><img src="/images/cordova/cordova2.png" alt="cordova create demo com.test.demo Demo"> </li>
+<li>cordova运行测试<br>cordova platform add android<br>cordova serve<br><img src="/images/cordova/cordova3.png" alt="cordova platform add android"> </li>
+</ol>
+<p><img src="/images/cordova/cordova4.png" alt="cordova serve"><br>运行效果如下:<br><img src="/images/cordova/cordova5.png" alt="效果1"> </p>
+<p><img src="/images/cordova/cordova6.png" alt="效果2"><br>5. cocos-creator打包web平台<br><img src="/images/cordova/cordova7.png" alt="cocos打包web平台"><br>6. 把cocos-creator的web工程添加到cordova项目中<br>先修改cordova启动页:<br><img src="/images/cordova/cordova9.png" alt="修改cordova启动页"> </p>
+<p><img src="/images/cordova/cordova10.png" alt="修改cordova启动页"> </p>
+<p><img src="/images/cordova/cordova11.png" alt="修改cordova启动页"><br>拷贝web工程并启动服务器测试:<br><img src="/images/cordova/cordova12.png" alt="拷贝web工程并启动服务器测试"><br>运行效果:<br><img src="/images/cordova/cordova13.png" alt="效果"><br>7. 打包android工程<br>打开项目:<br><img src="/images/cordova/cordova14.png" alt="项目"><br>在android-studio中运行:<br><img src="/images/cordova/cordova15.png" alt="效果"> </p>
+<p><img src="/images/cordova/cordova16.png" alt="效果"> </p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%80%9F%E5%8A%A9cordova%E6%89%93%E5%8C%85%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5-mac%E7%8E%AF%E5%A2%83"><span class="toc-number">1.</span> <span class="toc-text">借助cordova打包静态网页(mac环境)</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2020/08/12/cocos-creator%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5%E6%89%93%E5%8C%85app/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2020/08/12/cocos-creator%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5%E6%89%93%E5%8C%85app/&text=cocos-creator静态网页打包app"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2020/08/12/cocos-creator%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5%E6%89%93%E5%8C%85app/&title=cocos-creator静态网页打包app"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2020/08/12/cocos-creator%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5%E6%89%93%E5%8C%85app/&is_video=false&description=cocos-creator静态网页打包app"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=cocos-creator静态网页打包app&body=Check out this article: http://example.com/2020/08/12/cocos-creator%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5%E6%89%93%E5%8C%85app/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2020/08/12/cocos-creator%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5%E6%89%93%E5%8C%85app/&title=cocos-creator静态网页打包app"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2020/08/12/cocos-creator%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5%E6%89%93%E5%8C%85app/&title=cocos-creator静态网页打包app"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2020/08/12/cocos-creator%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5%E6%89%93%E5%8C%85app/&title=cocos-creator静态网页打包app"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2020/08/12/cocos-creator%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5%E6%89%93%E5%8C%85app/&title=cocos-creator静态网页打包app"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2020/08/12/cocos-creator%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5%E6%89%93%E5%8C%85app/&name=cocos-creator静态网页打包app&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2020/08/12/cocos-creator%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5%E6%89%93%E5%8C%85app/&t=cocos-creator静态网页打包app"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2021
+    sfmy
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
