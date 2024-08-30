@@ -58,6 +58,9 @@
       <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
@@ -79,6 +82,10 @@
 
 
 
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
 
 
 
@@ -117,9 +124,15 @@
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
       <div class="site-state-item site-state-tags">
+          <a href="/tags/">
         <span class="site-state-item-count">7</span>
-        <span class="site-state-item-name">标签</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -144,7 +157,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/08/29/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/08/30/hexo-github%E6%90%AD%E5%BB%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -162,7 +175,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/08/29/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+          <a href="/2024/08/30/hexo-github%E6%90%AD%E5%BB%BA/" class="post-title-link" itemprop="url">hexo-github搭建</a>
         </h2>
 
         <div class="post-meta-container">
@@ -172,8 +185,18 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2024-08-29 17:10:47" itemprop="dateCreated datePublished" datetime="2024-08-29T17:10:47+08:00">2024-08-29</time>
+      <time title="创建时间：2024-08-30 10:14:13 / 修改时间：10:35:19" itemprop="dateCreated datePublished" datetime="2024-08-30T10:14:13+08:00">2024-08-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
     </span>
 
   
@@ -186,19 +209,18 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+          <h6 id="1-新建发布仓库"><a href="#1-新建发布仓库" class="headerlink" title="1.新建发布仓库"></a>1.新建发布仓库</h6><p>仓库名字格式为&lt;用户名&gt;.github.io<br>此仓库用来发布内容</p>
+<hr>
+<h6 id="2-新建博客仓库"><a href="#2-新建博客仓库" class="headerlink" title="2.新建博客仓库"></a>2.新建博客仓库</h6><p>新建仓库blogs<br>此仓库用来存储博客内容方便不同电脑同步编辑内容  </p>
+<hr>
+<h6 id="3-本地部署hexo环境"><a href="#3-本地部署hexo环境" class="headerlink" title="3.本地部署hexo环境"></a>3.本地部署hexo环境</h6><p>拉取远程github.io仓库到本地<br>新建blogs文件夹<br>部署hexo环境<br>把source文件夹内容与blogs对应  </p>
+<hr>
+<h6 id="4-发布博客到github-io"><a href="#4-发布博客到github-io" class="headerlink" title="4.发布博客到github.io"></a>4.发布博客到github.io</h6><p>在blogs文件夹中写自己的博客<br>hexo g 生成静态文件<br>把public中的文件全部拷贝到github.io中并提交<br>即可在github.io中访问自己的博客 </p>
+<hr>
+<h6 id="5-修改配置文件"><a href="#5-修改配置文件" class="headerlink" title="5.修改配置文件"></a>5.修改配置文件</h6><p>修改本地的config.yml文件和主题中的config.yml文件<br>打开tags和categories设置 </p>
+<hr>
+<h6 id="6-本地添加自定义脚本"><a href="#6-本地添加自定义脚本" class="headerlink" title="6.本地添加自定义脚本"></a>6.本地添加自定义脚本</h6><p>自动添加tag和categories<br>自动发布github.io   </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">source ~/.bin/log.sh</span><br><span class="line"></span><br><span class="line">tags=(&quot;android&quot; &quot;cocos&quot; &quot;keytool&quot; &quot;工具&quot; &quot;思考&quot; &quot;感悟&quot; &quot;命令行&quot; &quot;quit&quot;)</span><br><span class="line">categories=(&quot;技术&quot; &quot;新闻&quot; &quot;生活&quot; &quot;quit&quot;)</span><br><span class="line">function Help &#123;</span><br><span class="line">    cat &lt;&lt;EOF</span><br><span class="line">-h          显示帮助</span><br><span class="line">-n          新建博客</span><br><span class="line">-g          生成博客</span><br><span class="line">-s          本地服务器</span><br><span class="line">-p          发布github</span><br><span class="line">EOF</span><br><span class="line">exit</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function NewPage &#123;</span><br><span class="line">    local title; title=&quot;$1&quot;</span><br><span class="line">    local file; file=&quot;./source/_posts/$&#123;title&#125;.md&quot;</span><br><span class="line">    [[ -f &quot;$file&quot; ]] &amp;&amp; LogRed &quot;文件已经存在$file&quot; &amp;&amp; exit</span><br><span class="line">    hexo new &quot;$title&quot;</span><br><span class="line">    local tagline; tagline=$(grep -n &quot;^tags:$&quot; &quot;$file&quot; | awk -F &#x27;:&#x27; &#x27;&#123;print $1&#125;&#x27;)</span><br><span class="line">    select tag in &quot;$&#123;tags[@]&#125;&quot;; do</span><br><span class="line">        if [[ &quot;$tag&quot; == &quot;quit&quot; ]]; then</span><br><span class="line">            break;</span><br><span class="line">        else</span><br><span class="line">            gsed -i &quot;$&#123;tagline&#125;a- $tag&quot; &quot;$file&quot;</span><br><span class="line">        fi</span><br><span class="line">    done</span><br><span class="line">    local categoryline; categoryline=$((tagline-1))</span><br><span class="line">    select category in &quot;$&#123;categories[@]&#125;&quot;; do</span><br><span class="line">        if [[ &quot;$category&quot; == &quot;quit&quot; ]]; then</span><br><span class="line">            break;</span><br><span class="line">        else</span><br><span class="line">            gsed -i &quot;$&#123;categoryline&#125;a- $category&quot; &quot;$file&quot;</span><br><span class="line">        fi</span><br><span class="line">    done</span><br><span class="line">    gsed -i &quot;$&#123;categoryline&#125;acategories:&quot; &quot;$file&quot;</span><br><span class="line">    vim &quot;$file&quot;</span><br><span class="line">    exit</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Publish &#123;</span><br><span class="line">    local dir=&quot;/Users/sfmy/Documents/sfmy.github.io&quot;</span><br><span class="line">    git -C &quot;$dir&quot; pull </span><br><span class="line">    [[ $? -eq 0 ]] &amp;&amp; cp -r ./public/* &quot;$dir&quot;</span><br><span class="line">    [[ $? -eq 0 ]] &amp;&amp; git -C &quot;$dir&quot; add .</span><br><span class="line">    [[ $? -eq 0 ]] &amp;&amp; git -C &quot;$dir&quot; commit -m &#x27;发布&#x27;</span><br><span class="line">    [[ $? -eq 0 ]] &amp;&amp; git -C &quot;$dir&quot; push </span><br><span class="line">    exit</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">while getopts &quot;n:gsph&quot; opt; do</span><br><span class="line">    case &quot;$opt&quot; in</span><br><span class="line">        h)</span><br><span class="line">            Help</span><br><span class="line">            ;;</span><br><span class="line">        g)</span><br><span class="line">            hexo g</span><br><span class="line">            exit</span><br><span class="line">            ;;</span><br><span class="line">        s)</span><br><span class="line">            hexo s</span><br><span class="line">            exit</span><br><span class="line">            ;;</span><br><span class="line">        n)</span><br><span class="line">            NewPage &quot;$2&quot;</span><br><span class="line">            ;;</span><br><span class="line">        p)</span><br><span class="line">            Publish</span><br><span class="line">            ;;</span><br><span class="line">        ?)</span><br><span class="line">            Help</span><br><span class="line">            ;;</span><br><span class="line">    esac</span><br><span class="line"></span><br><span class="line">done</span><br><span class="line">Help</span><br></pre></td></tr></table></figure>
 
       
     </div>
