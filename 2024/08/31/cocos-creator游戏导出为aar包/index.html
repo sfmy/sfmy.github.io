@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="公司在应用商店上架了一款非游戏类的app，想要用接口控制更换包体内容。审核时，是正常内容。过了审核后，替换为游戏内容。那么把游戏内容打包成aar包，直接给android用吧。    1.android工程配置修改修改manifest文件修改配置文件,加入isLib方便控制1234567891011121314151617181920212223242526272829303132333435363">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cocos-creator游戏导出为aar包">
+<meta property="og:url" content="http://example.com/2024/08/31/cocos-creator%E6%B8%B8%E6%88%8F%E5%AF%BC%E5%87%BA%E4%B8%BAaar%E5%8C%85/index.html">
+<meta property="og:site_name" content="SFMY的博客">
+<meta property="og:description" content="公司在应用商店上架了一款非游戏类的app，想要用接口控制更换包体内容。审核时，是正常内容。过了审核后，替换为游戏内容。那么把游戏内容打包成aar包，直接给android用吧。    1.android工程配置修改修改manifest文件修改配置文件,加入isLib方便控制1234567891011121314151617181920212223242526272829303132333435363">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/cocos-creator%E6%B8%B8%E6%88%8F%E5%AF%BC%E5%87%BA%E4%B8%BAaar%E5%8C%85/cocos-android-aar9.png">
+<meta property="og:image" content="http://example.com/images/cocos-creator%E6%B8%B8%E6%88%8F%E5%AF%BC%E5%87%BA%E4%B8%BAaar%E5%8C%85/cocos-android-aar4.png">
+<meta property="og:image" content="http://example.com/images/cocos-creator%E6%B8%B8%E6%88%8F%E5%AF%BC%E5%87%BA%E4%B8%BAaar%E5%8C%85/cocos-android-aar5.png">
+<meta property="og:image" content="http://example.com/images/cocos-creator%E6%B8%B8%E6%88%8F%E5%AF%BC%E5%87%BA%E4%B8%BAaar%E5%8C%85/cocos-android-aar6.png">
+<meta property="og:image" content="http://example.com/images/cocos-creator%E6%B8%B8%E6%88%8F%E5%AF%BC%E5%87%BA%E4%B8%BAaar%E5%8C%85/cocos-android-aar7.png">
+<meta property="og:image" content="http://example.com/images/cocos-creator%E6%B8%B8%E6%88%8F%E5%AF%BC%E5%87%BA%E4%B8%BAaar%E5%8C%85/cocos-android-aar1.png">
+<meta property="og:image" content="http://example.com/images/cocos-creator%E6%B8%B8%E6%88%8F%E5%AF%BC%E5%87%BA%E4%B8%BAaar%E5%8C%85/cocos-android-aar2.png">
+<meta property="og:image" content="http://example.com/images/cocos-creator%E6%B8%B8%E6%88%8F%E5%AF%BC%E5%87%BA%E4%B8%BAaar%E5%8C%85/cocos-android-aar3.png">
+<meta property="og:image" content="http://example.com/images/cocos-creator%E6%B8%B8%E6%88%8F%E5%AF%BC%E5%87%BA%E4%B8%BAaar%E5%8C%85/cocos-android-aar10.png">
+<meta property="og:image" content="http://example.com/images/cocos-creator%E6%B8%B8%E6%88%8F%E5%AF%BC%E5%87%BA%E4%B8%BAaar%E5%8C%85/cocos-android-aar11.png">
+<meta property="article:published_time" content="2024-08-31T08:03:29.000Z">
+<meta property="article:modified_time" content="2024-08-31T09:01:37.358Z">
+<meta property="article:author" content="SFMY">
+<meta property="article:tag" content="cocos">
+<meta property="article:tag" content="android">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/cocos-creator%E6%B8%B8%E6%88%8F%E5%AF%BC%E5%87%BA%E4%B8%BAaar%E5%8C%85/cocos-android-aar9.png">
+
+
+<link rel="canonical" href="http://example.com/2024/08/31/cocos-creator%E6%B8%B8%E6%88%8F%E5%AF%BC%E5%87%BA%E4%B8%BAaar%E5%8C%85/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2024/08/31/cocos-creator%E6%B8%B8%E6%88%8F%E5%AF%BC%E5%87%BA%E4%B8%BAaar%E5%8C%85/","path":"2024/08/31/cocos-creator游戏导出为aar包/","title":"cocos-creator游戏导出为aar包"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>cocos-creator游戏导出为aar包 | SFMY的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">SFMY的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">眼因多流泪水而更清明 心因饱经忧患而愈温厚</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-android%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE%E4%BF%AE%E6%94%B9"><span class="nav-number">1.</span> <span class="nav-text">1.android工程配置修改</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9manifest%E6%96%87%E4%BB%B6%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-%E5%8A%A0%E5%85%A5isLib%E6%96%B9%E4%BE%BF%E6%8E%A7%E5%88%B6"><span class="nav-number"></span> <span class="nav-text">修改manifest文件修改配置文件,加入isLib方便控制123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164165166167168169import org.apache.tools.ant.taskdefs.condition.Osboolean isLib &#x3D; false;if (isLib) {    apply plugin: &#39;com.android.library&#39;}else {    apply plugin: &#39;com.android.application&#39;}RES_PATH &#x3D; RES_PATH.replace(&quot;\\&quot;, &quot;&#x2F;&quot;)COCOS_ENGINE_PATH &#x3D; COCOS_ENGINE_PATH.replace(&quot;\\&quot;, &quot;&#x2F;&quot;)buildDir &#x3D; &quot;${RES_PATH}&#x2F;proj&#x2F;build&#x2F;${project.name &#x3D;&#x3D;~ &#x2F;^[_a-zA-Z0-9-]+$&#x2F; ? project.name : &#39;CocosGame&#39;}&quot;android {    compileSdkVersion PROP_COMPILE_SDK_VERSION.toInteger()    buildToolsVersion PROP_BUILD_TOOLS_VERSION    ndkPath PROP_NDK_PATH    namespace APPLICATION_ID    compileOptions {        sourceCompatibility JavaVersion.VERSION_1_8        targetCompatibility JavaVersion.VERSION_1_8    }    defaultConfig {        if (!isLib) {            applicationId APPLICATION_ID        }        minSdkVersion PROP_MIN_SDK_VERSION        targetSdkVersion PROP_TARGET_SDK_VERSION        versionCode 1        versionName &quot;1.0&quot;         externalNativeBuild {             cmake {                 targets &quot;cocos&quot;                 arguments &quot;-DRES_DIR&#x3D;${RES_PATH}&quot;, &quot;-DANDROID_STL&#x3D;c++_static&quot;, &quot;-DANDROID_TOOLCHAIN&#x3D;clang&quot;, &quot;-DANDROID_ARM_NEON&#x3D;TRUE&quot;             }             ndk { abiFilters PROP_APP_ABI.split(&#39;:&#39;) }         }    }    sourceSets.main {        java.srcDirs &quot;..&#x2F;src&quot;, &quot;src&quot;        res.srcDirs &quot;..&#x2F;res&quot;, &#39;res&#39;, &quot;${RES_PATH}&#x2F;proj&#x2F;res&quot;        jniLibs.srcDirs &quot;..&#x2F;libs&quot;, &#39;libs&#39;        manifest.srcFile &quot;AndroidManifest.xml&quot;        assets.srcDir &quot;${RES_PATH}&#x2F;data&quot;        jniLibs {            &#x2F;&#x2F; Vulkan validation layer            &#x2F;&#x2F; srcDir &quot;${android.ndkDirectory}&#x2F;sources&#x2F;third_party&#x2F;vulkan&#x2F;src&#x2F;build-android&#x2F;jniLibs&quot;        }    }    externalNativeBuild {        cmake {            version &quot;3.22.1&quot;                path &quot;..&#x2F;CMakeLists.txt&quot;                buildStagingDirectory &quot;${RES_PATH}&#x2F;proj&#x2F;build&quot;        }    }    signingConfigs {        release {            if (project.hasProperty(&quot;RELEASE_STORE_FILE&quot;) &amp;&amp; !RELEASE_STORE_FILE.isEmpty()) {               storeFile file(RELEASE_STORE_FILE)               storePassword RELEASE_STORE_PASSWORD               keyAlias RELEASE_KEY_ALIAS               keyPassword RELEASE_KEY_PASSWORD            }        }    }    buildTypes {        release {            debuggable false            jniDebuggable false            renderscriptDebuggable false            minifyEnabled true            if (!isLib) {                shrinkResources true            }            proguardFiles getDefaultProguardFile(&#39;proguard-android.txt&#39;), &#39;proguard-rules.pro&#39;            if (project.hasProperty(&quot;RELEASE_STORE_FILE&quot;)) {                signingConfig signingConfigs.release            }                                    externalNativeBuild {                cmake {                    &#x2F;&#x2F; switch HIDE_SYMBOLS to OFF to skip compilation flag &#96;-fvisibility&#x3D;hidden&#96;                    arguments &quot;-DHIDE_SYMBOLS&#x3D;ON&quot;                }            }            if (!Boolean.parseBoolean(PROP_IS_DEBUG)) {                getIsDefault().set(true)            }        }        debug {            debuggable true            jniDebuggable true            renderscriptDebuggable true            &#x2F;&#x2F; resValue  &quot;string&quot;, &quot;app_name&quot;, &quot;${PROP_APP_NAME}-dbg&quot;            &#x2F;&#x2F; applicationIdSuffix &quot;.debug&quot;        }    }}dependencies {    if (isLib) {        compileOnly fileTree(dir: &#39;..&#x2F;libs&#39;, include: [&#39;*.jar&#39;,&#39;*.aar&#39;])        compileOnly fileTree(dir: &#39;libs&#39;, include: [&#39;*.jar&#39;,&#39;*.aar&#39;])        compileOnly fileTree(dir: &quot;${COCOS_ENGINE_PATH}&#x2F;cocos&#x2F;platform&#x2F;android&#x2F;java&#x2F;libs&quot;, include: [&#39;*.jar&#39;])    }    else {        implementation fileTree(dir: &#39;..&#x2F;libs&#39;, include: [&#39;*.jar&#39;,&#39;*.aar&#39;])        implementation fileTree(dir: &#39;libs&#39;, include: [&#39;*.jar&#39;,&#39;*.aar&#39;])        implementation fileTree(dir: &quot;${COCOS_ENGINE_PATH}&#x2F;cocos&#x2F;platform&#x2F;android&#x2F;java&#x2F;libs&quot;, include: [&#39;*.jar&#39;])    }    implementation project(&#39;:libservice&#39;)    implementation project(&#39;:libcocos&#39;)    if (isLib) {        &#x2F;&#x2F; 巨量上报        compileOnly fileTree(dir: &#39;libs&#x2F;AppLog&#39;, include: [&#39;*.jar&#39;,&#39;*.aar&#39;])        &#x2F;&#x2F; 好游快爆        compileOnly fileTree(dir: &#39;libs&#x2F;hykb&#39;, include: [&#39;*.jar&#39;,&#39;*.aar&#39;])        &#x2F;&#x2F; ToBid        compileOnly fileTree(dir: &#39;libs&#x2F;ToBid&#39;, include: [&#39;*.jar&#39;,&#39;*.aar&#39;])        compileOnly fileTree(dir: &#39;libs&#x2F;ToBid&#x2F;AdNetworks&#x2F;gdt&#39;, include: [&#39;*.jar&#39;,&#39;*.aar&#39;])        compileOnly fileTree(dir: &#39;libs&#x2F;ToBid&#x2F;AdNetworks&#x2F;csj&#39;, include: [&#39;*.jar&#39;,&#39;*.aar&#39;])        compileOnly fileTree(dir: &#39;libs&#x2F;ToBid&#x2F;AdNetworks&#x2F;gromore&#39;, include: [&#39;*.jar&#39;,&#39;*.aar&#39;])        compileOnly fileTree(dir: &#39;libs&#x2F;ToBid&#x2F;AdNetworks&#x2F;kuaishou&#39;, include: [&#39;*.jar&#39;,&#39;*.aar&#39;])        compileOnly fileTree(dir: &#39;libs&#x2F;ToBid&#x2F;AdNetworks&#x2F;baidu&#39;, include: [&#39;*.jar&#39;,&#39;*.aar&#39;])    }    else {        &#x2F;&#x2F; 巨量上报        implementation fileTree(dir: &#39;libs&#x2F;AppLog&#39;, include: [&#39;*.jar&#39;,&#39;*.aar&#39;])        &#x2F;&#x2F; 好游快爆        implementation fileTree(dir: &#39;libs&#x2F;hykb&#39;, include: [&#39;*.jar&#39;,&#39;*.aar&#39;])        &#x2F;&#x2F; ToBid        implementation fileTree(dir: &#39;libs&#x2F;ToBid&#39;, include: [&#39;*.jar&#39;,&#39;*.aar&#39;])        implementation fileTree(dir: &#39;libs&#x2F;ToBid&#x2F;AdNetworks&#x2F;gdt&#39;, include: [&#39;*.jar&#39;,&#39;*.aar&#39;])        implementation fileTree(dir: &#39;libs&#x2F;ToBid&#x2F;AdNetworks&#x2F;csj&#39;, include: [&#39;*.jar&#39;,&#39;*.aar&#39;])        implementation fileTree(dir: &#39;libs&#x2F;ToBid&#x2F;AdNetworks&#x2F;gromore&#39;, include: [&#39;*.jar&#39;,&#39;*.aar&#39;])        implementation fileTree(dir: &#39;libs&#x2F;ToBid&#x2F;AdNetworks&#x2F;kuaishou&#39;, include: [&#39;*.jar&#39;,&#39;*.aar&#39;])        implementation fileTree(dir: &#39;libs&#x2F;ToBid&#x2F;AdNetworks&#x2F;baidu&#39;, include: [&#39;*.jar&#39;,&#39;*.aar&#39;])    }    &#x2F;&#x2F; glide    &#x2F;&#x2F;建议使⽤的26以上的support库版本，建议使⽤28最新的即可。    api &quot;com.android.support:appcompat-v7:28.0.0&quot;    api &quot;com.android.support:recyclerview-v7:28.0.0&quot;    api &#39;com.github.bumptech.glide:glide:4.16.0&#39;    &#x2F;&#x2F; 微信登陆    api &#39;com.tencent.mm.opensdk:wechat-sdk-android:+&#39;    &#x2F;&#x2F;AndroidX    api &#39;androidx.legacy:legacy-support-v4:1.0.0&#39;    if (Boolean.parseBoolean(PROP_ENABLE_INPUTSDK)) {        implementation &#39;com.google.android.libraries.play.games:inputmapping:1.1.0-beta&#39;        implementation &quot;org.jetbrains.kotlin:kotlin-stdlib:1.4.10&quot;    }}</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-android%E5%B7%A5%E7%A8%8B%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">2.android工程设置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E5%A6%82%E6%9E%9C%E5%8F%B3%E4%BE%A7%E6%B2%A1%E6%9C%89%E6%98%BE%E7%A4%BATasks"><span class="nav-number">2.</span> <span class="nav-text">3.如果右侧没有显示Tasks</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-%E6%96%B0%E7%9A%84%E5%B7%A5%E7%A8%8B%E4%B8%AD%E9%9C%80%E8%A6%81%E5%BC%95%E5%85%A5%E6%89%80%E6%9C%89%E7%9A%84aar%E5%8C%85"><span class="nav-number">3.</span> <span class="nav-text">4.新的工程中需要引入所有的aar包</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">SFMY</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/08/31/cocos-creator%E6%B8%B8%E6%88%8F%E5%AF%BC%E5%87%BA%E4%B8%BAaar%E5%8C%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SFMY">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SFMY的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="cocos-creator游戏导出为aar包 | SFMY的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          cocos-creator游戏导出为aar包
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-08-31 16:03:29 / 修改时间：17:01:37" itemprop="dateCreated datePublished" datetime="2024-08-31T16:03:29+08:00">2024-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>公司在应用商店上架了一款非游戏类的app，想要用接口控制更换包体内容。审核时，是正常内容。过了审核后，<br>替换为游戏内容。那么把游戏内容打包成aar包，直接给android用吧。  </p>
+<hr>
+<h5 id="1-android工程配置修改"><a href="#1-android工程配置修改" class="headerlink" title="1.android工程配置修改"></a>1.android工程配置修改</h5><h2 id="修改manifest文件修改配置文件-加入isLib方便控制"><a href="#修改manifest文件修改配置文件-加入isLib方便控制" class="headerlink" title="修改manifest文件修改配置文件,加入isLib方便控制"></a>修改manifest文件<br><img src="/images/cocos-creator%E6%B8%B8%E6%88%8F%E5%AF%BC%E5%87%BA%E4%B8%BAaar%E5%8C%85/cocos-android-aar9.png"><br>修改配置文件,加入isLib方便控制<br><img src="/images/cocos-creator%E6%B8%B8%E6%88%8F%E5%AF%BC%E5%87%BA%E4%B8%BAaar%E5%8C%85/cocos-android-aar4.png"><br><img src="/images/cocos-creator%E6%B8%B8%E6%88%8F%E5%AF%BC%E5%87%BA%E4%B8%BAaar%E5%8C%85/cocos-android-aar5.png"><br><img src="/images/cocos-creator%E6%B8%B8%E6%88%8F%E5%AF%BC%E5%87%BA%E4%B8%BAaar%E5%8C%85/cocos-android-aar6.png"><br><img src="/images/cocos-creator%E6%B8%B8%E6%88%8F%E5%AF%BC%E5%87%BA%E4%B8%BAaar%E5%8C%85/cocos-android-aar7.png"><br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br></pre></td><td class="code"><pre><span class="line">import org.apache.tools.ant.taskdefs.condition.Os</span><br><span class="line">boolean isLib = false;</span><br><span class="line">if (isLib) &#123;</span><br><span class="line">    apply plugin: &#x27;com.android.library&#x27;</span><br><span class="line">&#125;</span><br><span class="line">else &#123;</span><br><span class="line">    apply plugin: &#x27;com.android.application&#x27;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">RES_PATH = RES_PATH.replace(&quot;\\&quot;, &quot;/&quot;)</span><br><span class="line">COCOS_ENGINE_PATH = COCOS_ENGINE_PATH.replace(&quot;\\&quot;, &quot;/&quot;)</span><br><span class="line"></span><br><span class="line">buildDir = &quot;$&#123;RES_PATH&#125;/proj/build/$&#123;project.name ==~ /^[_a-zA-Z0-9-]+$/ ? project.name : &#x27;CocosGame&#x27;&#125;&quot;</span><br><span class="line">android &#123;</span><br><span class="line">    compileSdkVersion PROP_COMPILE_SDK_VERSION.toInteger()</span><br><span class="line">    buildToolsVersion PROP_BUILD_TOOLS_VERSION</span><br><span class="line">    ndkPath PROP_NDK_PATH</span><br><span class="line">    namespace APPLICATION_ID</span><br><span class="line"></span><br><span class="line">    compileOptions &#123;</span><br><span class="line">        sourceCompatibility JavaVersion.VERSION_1_8</span><br><span class="line">        targetCompatibility JavaVersion.VERSION_1_8</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    defaultConfig &#123;</span><br><span class="line">        if (!isLib) &#123;</span><br><span class="line">            applicationId APPLICATION_ID</span><br><span class="line">        &#125;</span><br><span class="line">        minSdkVersion PROP_MIN_SDK_VERSION</span><br><span class="line">        targetSdkVersion PROP_TARGET_SDK_VERSION</span><br><span class="line">        versionCode 1</span><br><span class="line">        versionName &quot;1.0&quot;</span><br><span class="line"></span><br><span class="line">         externalNativeBuild &#123;</span><br><span class="line">             cmake &#123;</span><br><span class="line">                 targets &quot;cocos&quot;</span><br><span class="line">                 arguments &quot;-DRES_DIR=$&#123;RES_PATH&#125;&quot;, &quot;-DANDROID_STL=c++_static&quot;, &quot;-DANDROID_TOOLCHAIN=clang&quot;, &quot;-DANDROID_ARM_NEON=TRUE&quot;</span><br><span class="line">             &#125;</span><br><span class="line">             ndk &#123; abiFilters PROP_APP_ABI.split(&#x27;:&#x27;) &#125;</span><br><span class="line">         &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sourceSets.main &#123;</span><br><span class="line">        java.srcDirs &quot;../src&quot;, &quot;src&quot;</span><br><span class="line">        res.srcDirs &quot;../res&quot;, &#x27;res&#x27;, &quot;$&#123;RES_PATH&#125;/proj/res&quot;</span><br><span class="line">        jniLibs.srcDirs &quot;../libs&quot;, &#x27;libs&#x27;</span><br><span class="line">        manifest.srcFile &quot;AndroidManifest.xml&quot;</span><br><span class="line">        assets.srcDir &quot;$&#123;RES_PATH&#125;/data&quot;</span><br><span class="line">        jniLibs &#123;</span><br><span class="line">            // Vulkan validation layer</span><br><span class="line">            // srcDir &quot;$&#123;android.ndkDirectory&#125;/sources/third_party/vulkan/src/build-android/jniLibs&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    externalNativeBuild &#123;</span><br><span class="line">        cmake &#123;</span><br><span class="line">            version &quot;3.22.1&quot;</span><br><span class="line">                path &quot;../CMakeLists.txt&quot;</span><br><span class="line">                buildStagingDirectory &quot;$&#123;RES_PATH&#125;/proj/build&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    signingConfigs &#123;</span><br><span class="line"></span><br><span class="line">        release &#123;</span><br><span class="line">            if (project.hasProperty(&quot;RELEASE_STORE_FILE&quot;) &amp;&amp; !RELEASE_STORE_FILE.isEmpty()) &#123;</span><br><span class="line">               storeFile file(RELEASE_STORE_FILE)</span><br><span class="line">               storePassword RELEASE_STORE_PASSWORD</span><br><span class="line">               keyAlias RELEASE_KEY_ALIAS</span><br><span class="line">               keyPassword RELEASE_KEY_PASSWORD</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    buildTypes &#123;</span><br><span class="line">        release &#123;</span><br><span class="line">            debuggable false</span><br><span class="line">            jniDebuggable false</span><br><span class="line">            renderscriptDebuggable false</span><br><span class="line">            minifyEnabled true</span><br><span class="line">            if (!isLib) &#123;</span><br><span class="line">                shrinkResources true</span><br><span class="line">            &#125;</span><br><span class="line">            proguardFiles getDefaultProguardFile(&#x27;proguard-android.txt&#x27;), &#x27;proguard-rules.pro&#x27;</span><br><span class="line">            if (project.hasProperty(&quot;RELEASE_STORE_FILE&quot;)) &#123;</span><br><span class="line">                signingConfig signingConfigs.release</span><br><span class="line">            &#125;</span><br><span class="line">                        </span><br><span class="line">            externalNativeBuild &#123;</span><br><span class="line">                cmake &#123;</span><br><span class="line">                    // switch HIDE_SYMBOLS to OFF to skip compilation flag `-fvisibility=hidden`</span><br><span class="line">                    arguments &quot;-DHIDE_SYMBOLS=ON&quot;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if (!Boolean.parseBoolean(PROP_IS_DEBUG)) &#123;</span><br><span class="line">                getIsDefault().set(true)</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        debug &#123;</span><br><span class="line">            debuggable true</span><br><span class="line">            jniDebuggable true</span><br><span class="line">            renderscriptDebuggable true</span><br><span class="line">            // resValue  &quot;string&quot;, &quot;app_name&quot;, &quot;$&#123;PROP_APP_NAME&#125;-dbg&quot;</span><br><span class="line">            // applicationIdSuffix &quot;.debug&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    if (isLib) &#123;</span><br><span class="line">        compileOnly fileTree(dir: &#x27;../libs&#x27;, include: [&#x27;*.jar&#x27;,&#x27;*.aar&#x27;])</span><br><span class="line">        compileOnly fileTree(dir: &#x27;libs&#x27;, include: [&#x27;*.jar&#x27;,&#x27;*.aar&#x27;])</span><br><span class="line">        compileOnly fileTree(dir: &quot;$&#123;COCOS_ENGINE_PATH&#125;/cocos/platform/android/java/libs&quot;, include: [&#x27;*.jar&#x27;])</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        implementation fileTree(dir: &#x27;../libs&#x27;, include: [&#x27;*.jar&#x27;,&#x27;*.aar&#x27;])</span><br><span class="line">        implementation fileTree(dir: &#x27;libs&#x27;, include: [&#x27;*.jar&#x27;,&#x27;*.aar&#x27;])</span><br><span class="line">        implementation fileTree(dir: &quot;$&#123;COCOS_ENGINE_PATH&#125;/cocos/platform/android/java/libs&quot;, include: [&#x27;*.jar&#x27;])</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    implementation project(&#x27;:libservice&#x27;)</span><br><span class="line">    implementation project(&#x27;:libcocos&#x27;)</span><br><span class="line">    if (isLib) &#123;</span><br><span class="line">        // 巨量上报</span><br><span class="line">        compileOnly fileTree(dir: &#x27;libs/AppLog&#x27;, include: [&#x27;*.jar&#x27;,&#x27;*.aar&#x27;])</span><br><span class="line">        // 好游快爆</span><br><span class="line">        compileOnly fileTree(dir: &#x27;libs/hykb&#x27;, include: [&#x27;*.jar&#x27;,&#x27;*.aar&#x27;])</span><br><span class="line">        // ToBid</span><br><span class="line">        compileOnly fileTree(dir: &#x27;libs/ToBid&#x27;, include: [&#x27;*.jar&#x27;,&#x27;*.aar&#x27;])</span><br><span class="line">        compileOnly fileTree(dir: &#x27;libs/ToBid/AdNetworks/gdt&#x27;, include: [&#x27;*.jar&#x27;,&#x27;*.aar&#x27;])</span><br><span class="line">        compileOnly fileTree(dir: &#x27;libs/ToBid/AdNetworks/csj&#x27;, include: [&#x27;*.jar&#x27;,&#x27;*.aar&#x27;])</span><br><span class="line">        compileOnly fileTree(dir: &#x27;libs/ToBid/AdNetworks/gromore&#x27;, include: [&#x27;*.jar&#x27;,&#x27;*.aar&#x27;])</span><br><span class="line">        compileOnly fileTree(dir: &#x27;libs/ToBid/AdNetworks/kuaishou&#x27;, include: [&#x27;*.jar&#x27;,&#x27;*.aar&#x27;])</span><br><span class="line">        compileOnly fileTree(dir: &#x27;libs/ToBid/AdNetworks/baidu&#x27;, include: [&#x27;*.jar&#x27;,&#x27;*.aar&#x27;])</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        // 巨量上报</span><br><span class="line">        implementation fileTree(dir: &#x27;libs/AppLog&#x27;, include: [&#x27;*.jar&#x27;,&#x27;*.aar&#x27;])</span><br><span class="line">        // 好游快爆</span><br><span class="line">        implementation fileTree(dir: &#x27;libs/hykb&#x27;, include: [&#x27;*.jar&#x27;,&#x27;*.aar&#x27;])</span><br><span class="line">        // ToBid</span><br><span class="line">        implementation fileTree(dir: &#x27;libs/ToBid&#x27;, include: [&#x27;*.jar&#x27;,&#x27;*.aar&#x27;])</span><br><span class="line">        implementation fileTree(dir: &#x27;libs/ToBid/AdNetworks/gdt&#x27;, include: [&#x27;*.jar&#x27;,&#x27;*.aar&#x27;])</span><br><span class="line">        implementation fileTree(dir: &#x27;libs/ToBid/AdNetworks/csj&#x27;, include: [&#x27;*.jar&#x27;,&#x27;*.aar&#x27;])</span><br><span class="line">        implementation fileTree(dir: &#x27;libs/ToBid/AdNetworks/gromore&#x27;, include: [&#x27;*.jar&#x27;,&#x27;*.aar&#x27;])</span><br><span class="line">        implementation fileTree(dir: &#x27;libs/ToBid/AdNetworks/kuaishou&#x27;, include: [&#x27;*.jar&#x27;,&#x27;*.aar&#x27;])</span><br><span class="line">        implementation fileTree(dir: &#x27;libs/ToBid/AdNetworks/baidu&#x27;, include: [&#x27;*.jar&#x27;,&#x27;*.aar&#x27;])</span><br><span class="line">    &#125;</span><br><span class="line">    // glide</span><br><span class="line">    //建议使⽤的26以上的support库版本，建议使⽤28最新的即可。</span><br><span class="line">    api &quot;com.android.support:appcompat-v7:28.0.0&quot;</span><br><span class="line">    api &quot;com.android.support:recyclerview-v7:28.0.0&quot;</span><br><span class="line">    api &#x27;com.github.bumptech.glide:glide:4.16.0&#x27;</span><br><span class="line"></span><br><span class="line">    // 微信登陆</span><br><span class="line">    api &#x27;com.tencent.mm.opensdk:wechat-sdk-android:+&#x27;</span><br><span class="line"></span><br><span class="line">    //AndroidX</span><br><span class="line">    api &#x27;androidx.legacy:legacy-support-v4:1.0.0&#x27;</span><br><span class="line"></span><br><span class="line">    if (Boolean.parseBoolean(PROP_ENABLE_INPUTSDK)) &#123;</span><br><span class="line">        implementation &#x27;com.google.android.libraries.play.games:inputmapping:1.1.0-beta&#x27;</span><br><span class="line">        implementation &quot;org.jetbrains.kotlin:kotlin-stdlib:1.4.10&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></h2><h5 id="2-android工程设置"><a href="#2-android工程设置" class="headerlink" title="2.android工程设置"></a>2.android工程设置</h5><p><img src="/images/cocos-creator%E6%B8%B8%E6%88%8F%E5%AF%BC%E5%87%BA%E4%B8%BAaar%E5%8C%85/cocos-android-aar1.png"><br>点击右侧gradle展开menu<br>依次点击游戏,libcocos,libservice<br>双击other中assembleRelease<br>即可生成对应的aar文件<br><img src="/images/cocos-creator%E6%B8%B8%E6%88%8F%E5%AF%BC%E5%87%BA%E4%B8%BAaar%E5%8C%85/cocos-android-aar2.png"></p>
+<hr>
+<h5 id="3-如果右侧没有显示Tasks"><a href="#3-如果右侧没有显示Tasks" class="headerlink" title="3.如果右侧没有显示Tasks"></a>3.如果右侧没有显示Tasks</h5><p>打开设置，取消勾选以下设置<br><img src="/images/cocos-creator%E6%B8%B8%E6%88%8F%E5%AF%BC%E5%87%BA%E4%B8%BAaar%E5%8C%85/cocos-android-aar3.png"></p>
+<hr>
+<h5 id="4-新的工程中需要引入所有的aar包"><a href="#4-新的工程中需要引入所有的aar包" class="headerlink" title="4.新的工程中需要引入所有的aar包"></a>4.新的工程中需要引入所有的aar包</h5><p><img src="/images/cocos-creator%E6%B8%B8%E6%88%8F%E5%AF%BC%E5%87%BA%E4%B8%BAaar%E5%8C%85/cocos-android-aar10.png"><br><img src="/images/cocos-creator%E6%B8%B8%E6%88%8F%E5%AF%BC%E5%87%BA%E4%B8%BAaar%E5%8C%85/cocos-android-aar11.png"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/cocos/" rel="tag"># cocos</a>
+              <a href="/tags/android/" rel="tag"># android</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/08/31/%E9%98%B3%E5%85%B3%E9%81%93-%E5%90%B4%E9%A2%98-%E5%9F%99/" rel="prev" title="阳关道-吴题-埙">
+                  <i class="fa fa-angle-left"></i> 阳关道-吴题-埙
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">SFMY</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
